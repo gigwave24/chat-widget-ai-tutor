@@ -957,7 +957,10 @@ const welcomeScreenHTML = `
     }
 });
 
+    if (!window.ChatWidgetConfig?.skipCollectUserDetails && registrationForm) {
     registrationForm.addEventListener('submit', handleRegistration);
+}
+
     
     sendButton.addEventListener('click', () => {
         const messageText = messageTextarea.value.trim();
