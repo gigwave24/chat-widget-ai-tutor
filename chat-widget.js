@@ -945,7 +945,18 @@ const welcomeScreenHTML = `
     }
 
     // Event listeners
-    startChatButton.addEventListener('click', showRegistrationForm);
+    startChatButton.addEventListener('click', () => {
+    if (window.ChatWidgetConfig?.skipCollectUserDetails) {
+        // If skip user details → straight open chat body
+        conversationId = createSessionId(); // create new conversation
+        chatBody.classList.add('active');
+        chatWelcome.style.display = 'none';
+    } else {
+        // Else → show registration form
+        showRegistrationForm();
+    }
+});
+
     registrationForm.addEventListener('submit', handleRegistration);
     
     sendButton.addEventListener('click', () => {
