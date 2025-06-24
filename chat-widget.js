@@ -1,3 +1,4 @@
+// v1.0.2 update - minor change to trigger new release
 // Interactive Chat Widget for n8n
 (function() {
     // Initialize widget only once
