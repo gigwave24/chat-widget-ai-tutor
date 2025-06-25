@@ -875,17 +875,22 @@ const welcomeScreenHTML = `
         isWaitingForResponse = true;
         
         // Get user info if available
-        const email = nameInput ? nameInput.value.trim() : "";
-        const name = emailInput ? emailInput.value.trim() : "";
-        
+        const userId = window.ChatWidgetConfig?.user?.id || "";
+        const userName = window.ChatWidgetConfig?.user?.name || "";
+        const userEmail = window.ChatWidgetConfig?.user?.email || "";
+
+        const email = emailInput ? emailInput.value.trim() : userEmail;
+        const name = nameInput ? nameInput.value.trim() : userName;
+
         const requestData = {
             action: "sendMessage",
             sessionId: conversationId,
             route: settings.webhook.route,
             chatInput: messageText,
             metadata: {
-                userId: email,
-                userName: name
+                userId: userId || email,
+                userName: userName || name,
+                userEmail: userEmail || email
             }
         };
 
