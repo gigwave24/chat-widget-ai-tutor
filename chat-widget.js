@@ -875,24 +875,28 @@ const welcomeScreenHTML = `
         isWaitingForResponse = true;
         
         // Get user info if available
-        const userId = window.ChatWidgetConfig?.user?.id || "";
-        const userName = window.ChatWidgetConfig?.user?.name || "";
-        const userEmail = window.ChatWidgetConfig?.user?.email || "";
+const userId = window.ChatWidgetConfig?.user?.id || "";
+const userName = window.ChatWidgetConfig?.user?.name || "";
+const userEmail = window.ChatWidgetConfig?.user?.email || "";
+const courseId = window.ChatWidgetConfig?.user?.courseId || "";
+const lessonId = window.ChatWidgetConfig?.user?.lessonId || "";
 
-        const email = emailInput ? emailInput.value.trim() : userEmail;
-        const name = nameInput ? nameInput.value.trim() : userName;
+const email = emailInput ? emailInput.value.trim() : userEmail;
+const name = nameInput ? nameInput.value.trim() : userName;
 
-        const requestData = {
-            action: "sendMessage",
-            sessionId: conversationId,
-            route: settings.webhook.route,
-            chatInput: messageText,
-            metadata: {
-                userId: userId || email,
-                userName: userName || name,
-                userEmail: userEmail || email
-            }
-        };
+const requestData = {
+  action: "sendMessage",
+  sessionId: conversationId,
+  route: settings.webhook.route,
+  chatInput: messageText,
+  metadata: {
+    userId: userId || email,
+    userName: userName || name,
+    userEmail: userEmail || email,
+    courseId: courseId,
+    lessonId: lessonId
+  }
+};
 
         // Display user message
         const userMessage = document.createElement('div');
